@@ -3,7 +3,7 @@ var reactRouter = require('react-router')
 var Link = reactRouter.Link
 
 var Navbar = React.createClass({
-  render() {
+  render: function() {
     return (
       <nav className="navbar navbar-light bg-faded">
         <div className="container">

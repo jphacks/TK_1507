@@ -28,7 +28,7 @@ var Browse = React.createClass({
       }
     })
   },
-  render() {
+  render: function() {
     return (
       <div className='container'>
         <h1>Browse</h1>

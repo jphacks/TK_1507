@@ -23,7 +23,7 @@ var Result = React.createClass({
       }
     })
   },
-  render() {
+  render: function() {
     return (
       <div className='container'>
         <h1>Result</h1>

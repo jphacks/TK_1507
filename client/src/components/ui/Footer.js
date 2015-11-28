@@ -1,7 +1,7 @@
 var React = require('react')
 
 var Footer = React.createClass({
-  render() {
+  render: function() {
     return (
       <footer className='container'>
         <hr />
