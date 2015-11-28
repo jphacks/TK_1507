@@ -1,5 +1,8 @@
 var React = require('react')
 
+// Ui
+var FavoriteButton = require('../ui/FavoriteButton.js')
+
 var Result = React.createClass({
   getInitialState: function() {
     return {
@@ -29,6 +32,7 @@ var Result = React.createClass({
         <h1>Result</h1>
         <hr />
         <p>#{this.props.params.resultId}</p>
+        <FavoriteButton id={this.props.params.resultId} />
 
         {
           this.state.result.map(function(item, index) {
