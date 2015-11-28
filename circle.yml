@@ -9,7 +9,7 @@ services:
 
 before_script:
   - mysql -e 'create database server_test;'
-  - mv config/database.ci.yml config/database.yml
+  - mv server/config/database.ci.yml server/config/database.yml
 
 dependencies:
   override:
