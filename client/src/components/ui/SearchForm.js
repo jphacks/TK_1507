@@ -11,21 +11,24 @@ var SentenceForm = React.createClass({
     console.log('From', this.refs.from.value)
     console.log('To', this.refs.to.value)
 
-    fetch('http://jphacks.進捗.jp:8080/api/v1/search', {
+    // fetch('http://jphacks.進捗.jp:8080/api/v1/search', {
+    fetch('http://localhost:3000/api/v1/results', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: this.refs.from.value,
-        to: this.refs.to.value,
+        result: {
+          from: this.refs.from.value,
+          to: this.refs.to.value
+        }
       })
     }).then(function(response) {
-      console.log(response)
       return response.json()
     }).then(function(response) {
       console.log(response)
+      self.history.pushState(null, `/result/${response.id}`, null);
     })
   },
   render() {

@@ -13,17 +13,19 @@ var Browse = React.createClass({
   },
   componentWillMount: function() {
     var self = this;
-    fetch('http://www.makky.io', {
+    fetch('http://localhost:3000/api/v1/results/', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }).then(function(response) {
-      // return response.json();
+      return response.json();
     }).then(function(response) {
-      // if (response !== null) {
-      // }
+      if (response !== null) {
+        console.log(response)
+        self.setState({result: response})
+      }
     })
   },
   render() {
