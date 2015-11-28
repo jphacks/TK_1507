@@ -7,6 +7,7 @@ var Redirect = reactRouter.Redirect
 var history = require('history')
 var createHistory = history.createHistory
 var useBasename = history.useBasename
+var Promise = require('es6-promise').Promise
 
 // Page components
 var Layout = require('./components/page/Layout.js')
