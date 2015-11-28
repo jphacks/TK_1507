@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20151128020235) do
   end
 
   create_table "wikipedia_nodes", force: :cascade do |t|
-    t.string   "word",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.text     "word",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end

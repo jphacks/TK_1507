@@ -1,11 +1,40 @@
 {
-  "name": "client",
+  "name": "TK_02-client",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "gulp --gulpfile gulpfile/index.coffee build",
+    "develop": "gulp --gulpfile gulpfile/index.coffee develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "takoyaki",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-connect": "^2.2.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-pleeease": "^2.0.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-ruby-sass": "^2.0.5",
+    "gulp-uglify": "^1.5.1",
+    "licensify": "^2.0.1",
+    "reactify": "^1.1.1",
+    "require-dir": "^0.3.0",
+    "rimraf": "^2.4.3",
+    "run-sequence": "^1.1.4",
+    "uglifyify": "^3.0.1"
+  },
+  "dependencies": {
+    "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
+    "font-awesome": "^4.4.0",
+    "history": "^1.13.1",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0",
+    "reactify": "^1.1.1",
+    "whatwg-fetch": "^0.10.1"
+  }
 }
