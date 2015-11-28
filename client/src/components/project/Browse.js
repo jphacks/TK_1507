@@ -13,7 +13,7 @@ var Browse = React.createClass({
   },
   componentWillMount: function() {
     var self = this;
-    fetch('http://localhost:3000/api/v1/results/', {
+    fetch('http://jphacks.進捗.jp/api/v1/results/', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
