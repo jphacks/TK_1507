@@ -4,7 +4,7 @@ var React = require('react')
 var SearchForm = require('../ui/SearchForm.js')
 
 var Search = React.createClass({
-  render() {
+  render: function() {
     return (
       <div className='container'>
         <h1>Search</h1>

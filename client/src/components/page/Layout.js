@@ -5,7 +5,7 @@ var Navbar = require('../ui/Navbar.js')
 var Footer = require('../ui/Footer.js')
 
 var Layout = React.createClass({
-  render() {
+  render: function() {
     return (
       <div>
         <Navbar />

@@ -5,7 +5,7 @@ var History = reactRouter.History
 
 var SentenceForm = React.createClass({
   mixins: [ History ],
-  onClick(e) {
+  onClick: function(e) {
     var self = this;
 
     console.log('From', this.refs.from.value)
@@ -27,11 +27,10 @@ var SentenceForm = React.createClass({
     }).then(function(response) {
       return response.json()
     }).then(function(response) {
-      console.log(response)
       self.history.pushState(null, `/result/${response.id}`, null);
     })
   },
-  render() {
+  render: function() {
     return (
       <form onsubmit="return false;">
         <fieldset className="form-group">
