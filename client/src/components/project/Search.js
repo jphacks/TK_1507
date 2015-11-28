@@ -8,6 +8,7 @@ var Search = React.createClass({
     return (
       <div className='container'>
         <h1>Search</h1>
+        <hr />
 
         <div className='row'>
           <div className='container'>

@@ -7,12 +7,22 @@ var SentenceForm = React.createClass({
   mixins: [ History ],
   onClick(e) {
     var self = this;
-    fetch('http://www.makky.io', {
-      method: 'GET',
+
+    console.log('From', this.refs.from.value)
+    console.log('To', this.refs.to.value)
+
+    fetch('/api/v1/search', {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: this.refs.from.value,
+        to: this.refs.to.value,
+      })
     }).then(function(response) {
+      console.log(response)
       return response.json()
     }).then(function(response) {
       console.log(response)
@@ -22,16 +32,16 @@ var SentenceForm = React.createClass({
     return (
       <form onsubmit="return false;">
         <fieldset className="form-group">
-          <div className='form-inline'>
-            <fieldset className="col-sm-6">
+          <div className="row">
+            <div className="col-sm-6">
               <label>From:</label>
-              <input type="text" className="form-control" ref="from" placeholder="Enter from" />
-            </fieldset>
+              <input type="text" className="form-control" ref="from" placeholder="Enter from word" />
+            </div>
 
-            <fieldset className="col-sm-6">
+            <div className="col-sm-6">
               <label>To:</label>
-              <input type="text" className="form-control" ref="from" placeholder="Enter to" />
-            </fieldset>
+              <input type="text" className="form-control" ref="to" placeholder="Enter to word" />
+            </div>
           </div>
         </fieldset>
 
