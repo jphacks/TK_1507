@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       #favorite model
       get 'favorites', to: 'favorites#index'
       post 'search', to: 'search#create'
-      get 'favorites/:favorites_id', to: 'favorites#show'
+      get 'favorites/:results_id', to: 'favorites#show'
 
     end
   end
