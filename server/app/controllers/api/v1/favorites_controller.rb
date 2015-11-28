@@ -7,7 +7,7 @@ module Api
       end
       
       def show
-        render :json => "['success','show(GET api/v1/favorites/:favorites_id)','method!']"
+        render :json => "['success','show(GET api/v1/favorites/:results_id)','method!']"
       end      
       
       def create
