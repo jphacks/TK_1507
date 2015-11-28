@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, { format: 'json' } do
     namespace :v1 do 
-      post 'search', to: 'json_api#search'
+      post 'search', to: 'search#index'
     end
   end
   
