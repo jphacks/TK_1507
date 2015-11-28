@@ -1,3 +1,8 @@
+## Status
+Master [![Circle CI](https://circleci.com/gh/jphacks/TK_07/tree/master.svg?style=svg)](https://circleci.com/gh/jphacks/TK_07/tree/master)
+
+Develop [![Circle CI](https://circleci.com/gh/jphacks/TK_07/tree/develop.svg?style=svg)](https://circleci.com/gh/jphacks/TK_07/tree/develop)
+
 # サンプル（プロダクト名）
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
@@ -10,22 +15,22 @@
 ### 解決出来ること
 ### 今後の展望
 ### 注力したこと（こだわり等）
-* 
-* 
+*
+*
 
 ## 開発技術
 ### 活用した技術
 #### API・データ
-* 
-* 
+*
+*
 
 #### フレームワーク・ライブラリ・モジュール
-* 
-* 
+*
+*
 
 #### デバイス
-* 
-* 
+*
+*
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
@@ -33,5 +38,5 @@
 * 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
-* 
-* 
+*
+*
