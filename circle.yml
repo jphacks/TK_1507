@@ -4,5 +4,9 @@ machine:
 
 dependencies:
   override:
-    - cd client | npm install
-    - cd client | npm install -g gulp
+    - cd client && npm install
+    - cd client && npm install -g gulp
+
+test:
+  override:
+    - cd client && npm run build
