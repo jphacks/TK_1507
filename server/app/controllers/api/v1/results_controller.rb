@@ -46,22 +46,45 @@ class Api::V1::ResultsController < ApplicationController
   private
   def searchParams
     params.require(:result).permit(:from, :to)
+    from_keyword = '栃木県'
+    to_keyword = '地方公共団体'
+
+    from_id = WikipediaNode.find_by(word: from_keyword).id
+    to_id = WikipediaNode.find_by(word: to_keyword).id
+
+    if path = bfs(client, open_list=[from_id], check_list=[], to_id, edges=[])
+      result = [to_id]
+      while to_id
+        to_id = path[to_id]
+        result.push(to_id)
+      end
+      puts result.join("->")[0..-3]
+    end
   end
 
   private
-  def bfs(client, open_list=[], check_list=[], from_id, to_id)
-    records = client.query("select to_id from wikipedia_edges where from_id = '#{from_id}' limit 100").to_a.map{|record| record['to_id']}
+  def bfs(client, open_list, check_list=[], to_id, edges)
+
+    from_id = open_list.shift
+    # puts "searching...#{from_id}"
+
+    records = WikipediaEdge.find_by(from_id: from_id).to_a
+    # records = client.query("select to_id from wikipedia_edges where from_id = '#{from_id}'")
+    # .to_a.map{|record| record['to_id']}
+    # .select{|item| !item.nil?}
+
+    edges += records.map{|to_id| [from_id, to_id]}
+
     check_list.push from_id
-    open_list.concat records
+    open_list += records
 
-    return true if records.include? to_id
+    # puts "open_list={#{open_list}}"
 
-    records.each do |next_from_id|
-      unless check_list.include? next_from_id
-        bfs(client, open_list, check_list, next_from_id, to_id)
-      end
+    if records.include? to_id
+      return edges.map{|edge| edge.reverse}.to_h
+    else
+      return bfs(client, open_list, check_list, to_id, edges)
     end
-    return 0
   end
 
 end
