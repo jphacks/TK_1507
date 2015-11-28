@@ -4,9 +4,18 @@ Rails.application.routes.draw do
   
   namespace :api, { format: 'json' } do
     namespace :v1 do 
+      #search model
       post 'search', to: 'search#index'
+      
+      #result model
       get 'results', to: 'results#index'
       get 'results/:results_id', to: 'results#show'
+      
+      #favorite model
+      get 'favorites', to: 'favorites#index'
+      post 'favorites', to: 'favorites#create'
+      get 'favorites/:results_id', to: 'favorites#show'
+
     end
   end
   
