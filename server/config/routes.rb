@@ -1,24 +1,13 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  
-  namespace :api, { format: 'json' } do
-    namespace :v1 do 
-      #search model
-      post 'search', to: 'search#create'
-      
-      #result model
-      get 'results', to: 'results#index'
-      get 'results/:results_id', to: 'results#show'
-      
-      #favorite model
-      get 'favorites', to: 'favorites#index'
-      post 'favorites', to: 'favorites#create'
-      get 'favorites/:results_id', to: 'favorites#show'
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :results, only: [:index, :create, :show]
+      resources :favorites, only: [:index, :create, :show]
     end
   end
-  
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128020235) do
+ActiveRecord::Schema.define(version: 20151128133111) do
+
+  create_table "result_items", force: :cascade do |t|
+    t.integer  "result_id",  limit: 4
+    t.integer  "node_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "result_items", ["result_id"], name: "index_result_items_on_result_id", using: :btree
+
+  create_table "results", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "wikipedia_edges", force: :cascade do |t|
     t.integer  "from_id",    limit: 4
