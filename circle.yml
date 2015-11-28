@@ -16,7 +16,6 @@ dependencies:
 test:
   override:
     - mysql -e 'create database server_test;'
-    - mv server/config/database.ci.yml server/config/database.yml
 
     - cd client && npm run build
 
