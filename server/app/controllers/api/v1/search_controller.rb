@@ -3,7 +3,7 @@ module Api
 
     class SearchController < ApplicationController
       def index
-        render :json => "success!"
+        render :json => "['a','b','c']"
       end  
     end
     
