@@ -1,0 +1,8 @@
+machine:
+  node:
+    version: 5.0.0
+
+dependencies:
+  override:
+    - cd client | npm install
+    - cd client | npm install -g gulp
