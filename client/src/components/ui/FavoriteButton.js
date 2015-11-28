@@ -24,7 +24,7 @@ var FavoriteButton = React.createClass({
       self.setState({count: response})
     })
   },
-  onClick() {
+  onClick: function() {
     var self = this;
     fetch('http://jphacks.進捗.jp/api/v1/favorites', {
       method: 'POST',
@@ -45,7 +45,7 @@ var FavoriteButton = React.createClass({
       }, 2400)
     })
   },
-  render() {
+  render: function() {
     return (
       <button className="btn btn-primary-outline btn-sm" onClick={this.onClick} disabled={this.state.disabled}>
         <i className="fa fa-star fa-fw" />
