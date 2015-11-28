@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       #result model
       get 'results', to: 'results#index'
       get 'results/:results_id', to: 'results#show'
-
+      
       #favorite model
       get 'favorites', to: 'favorites#index'
-      post 'search', to: 'search#create'
+      post 'favorites', to: 'favorites#create'
       get 'favorites/:results_id', to: 'favorites#show'
 
     end
