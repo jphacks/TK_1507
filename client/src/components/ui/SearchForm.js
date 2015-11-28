@@ -12,7 +12,7 @@ var SentenceForm = React.createClass({
     console.log('To', this.refs.to.value)
 
     // fetch('http://jphacks.進捗.jp:8080/api/v1/search', {
-    fetch('http://localhost:3000/api/v1/results', {
+    fetch('http://jphacks.進捗.jp/api/v1/results', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
