@@ -27,7 +27,7 @@ var SentenceForm = React.createClass({
     }).then(function(response) {
       return response.json()
     }).then(function(response) {
-      self.history.pushState(null, `/result/${response.id}`, null);
+      self.history.pushState(undefined, "/result/" + response.id, undefined);
     })
   },
   render: function() {
