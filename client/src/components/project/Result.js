@@ -34,7 +34,10 @@ var Result = React.createClass({
           this.state.result.map(function(item, index) {
             return (
               <div className='col-xs-12 card' key={index}>
-                <p key={index}></p>
+                <div className='card-clock' key={index}>
+                  <p key={index}>{item.node_id}</p>
+                  <p key={index+999}>{item.created_at}</p>
+                </div>
               </div>
             )
           })
