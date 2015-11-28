@@ -3,12 +3,13 @@ var whatwgFetch = require('whatwg-fetch')
 var reactRouter = require('react-router')
 var Link = reactRouter.Link
 
-// Component
+// Ui
+var FavoriteButton = require('../ui/FavoriteButton.js')
 
 var Browse = React.createClass({
   getInitialState: function() {
     return {
-      result: [1,2,3]
+      result: []
     };
   },
   componentWillMount: function() {
@@ -43,6 +44,7 @@ var Browse = React.createClass({
                       <p>{item.id}</p>
                       <p>{item.created_at}</p>
                       <Link className="btn btn-primary-outline btn-sm" to={"/result/" + item.id}>Detail</Link>
+                      <FavoriteButton id={item.id} />
                     </div>
                   </div>
                 )
