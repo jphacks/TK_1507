@@ -68,7 +68,7 @@ class Api::V1::ResultsController < ApplicationController
     from_id = open_list.shift
     # puts "searching...#{from_id}"
 
-    records = WikipediaEdge.find_by(from_id: from_id).to_a
+    records = WikipediaEdge.where(from_id: 300).map{|record| record.to_id}
     # records = client.query("select to_id from wikipedia_edges where from_id = '#{from_id}'")
     # .to_a.map{|record| record['to_id']}
     # .select{|item| !item.nil?}
