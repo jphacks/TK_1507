@@ -39,7 +39,11 @@ var Browse = React.createClass({
               this.state.result.map(function(item, index) {
                 return (
                   <div className="col-sm-12 card" key={index} >
-                    <p className="card-block">hoge</p>
+                    <div className="card-block">
+                      <p>{item.id}</p>
+                      <p>{item.created_at}</p>
+                      <Link className="btn btn-primary-outline btn-sm" to={"/result/" + item.id}>Detail</Link>
+                    </div>
                   </div>
                 )
               })
