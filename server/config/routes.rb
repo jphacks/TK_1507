@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   namespace :api, { format: 'json' } do
-      get 'search', to: 'json_api_v1#search'
+    namespace :v1 do 
+      get 'search', to: 'json_api#search'
+    end
   end
   
 
