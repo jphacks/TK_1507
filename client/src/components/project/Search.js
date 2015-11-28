@@ -1,6 +1,6 @@
 var React = require('react')
 
-// Component
+// Ui
 var SearchForm = require('../ui/SearchForm.js')
 
 var Search = React.createClass({
