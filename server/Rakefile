@@ -23,7 +23,8 @@ namespace :unicorn do
   end
 
   def unicorn_signal signal
-    Process.kill signal, unicorn_pid
+    # Process.kill signal, unicorn_pid
+    sh "kill -9 #{unicorn_pid()}"
   end
   def unicorn_pid
     begin
