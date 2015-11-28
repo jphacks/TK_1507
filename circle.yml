@@ -1,0 +1,24 @@
+machine:
+  node:
+    version: 5.0.0
+  ruby:
+    version: 2.2.0
+
+dependencies:
+  override:
+    - cd client && npm install
+    - cd client && npm install -g gulp
+
+    - cd server && gem install bundler
+    - cd server && bundle -j4 --path=vendor/bundle
+    - cd server && bundle install
+
+test:
+  override:
+    - mysql -e 'create database server_test;'
+
+    - cd client && npm run build
+
+    - cd server && bundle exec rake db:create RAILS_ENV=test
+    - cd server && bundle exec rake db:migrate RAILS_ENV=test
+    - cd server && bundle exec rake test
