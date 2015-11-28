@@ -1,21 +1,18 @@
-module Api
-  module V1
-    
-    class FavoritesController < ApplicationController
-      def index
-        render :json => "['success','index(GET api/v1/favorites)','method!']"
-      end
-      
-      def show
-        render :json => "['success','show(GET api/v1/favorites/:results_id)','method!']"
-      end      
-      
-      def create
-        render :json => "['success','create(POST api/v1/favorites)','method!']"
-      end
-      
+class Api::V1::FavoritesController < ApplicationController
+  protect_from_forgery except: [:create, :show]
+
+  def create
+    favorite = Favorite.new result_id: params['result_id']
+
+    if favorite.save
+      render json: favorite
+    else
+      render json: favorite
     end
-    
+  end
+
+  def show
+    favorite = Favorite.where(result_id: params['id'])
+    render json: favorite.size
   end
 end
-

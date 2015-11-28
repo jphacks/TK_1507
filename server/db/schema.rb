@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128133111) do
+ActiveRecord::Schema.define(version: 20151128193443) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "result_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "result_items", force: :cascade do |t|
     t.integer  "result_id",  limit: 4
@@ -25,10 +31,6 @@ ActiveRecord::Schema.define(version: 20151128133111) do
   create_table "results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "tmp_nodes", force: :cascade do |t|
-    t.text "word", limit: 65535
   end
 
   create_table "wikipedia_edges", force: :cascade do |t|
