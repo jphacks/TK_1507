@@ -17,4 +17,6 @@ test:
   override:
     - cd client && npm run build
 
+    - cd server && bundle exec rake db:create
+    - cd server && bundle exec rake db:migrate
     - cd server && bundle exec rake test
