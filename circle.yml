@@ -2,13 +2,14 @@ machine:
   node:
     version: 5.0.0
   ruby:
-    version: 2.2.3-p173
+    version: 2.2.0
 
 dependencies:
   override:
     - cd client && npm install
     - cd client && npm install -g gulp
 
+    - cd server && gem install bundler
     - cd server && bundle install
 
 test:
