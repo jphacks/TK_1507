@@ -11,17 +11,14 @@ class Api::V1::ResultsController < ApplicationController
 
     # ids = client.query("select id, word from wikipedia_nodes where word = '#{params[:from]}' or word = '#{params[:to]}'").to_a.map{|record| record['id']}
 
-    from_id = ids[0]
-    to_id = ids[1]
+    # from_id = ids[0]
+    # to_id = ids[1]
 
     chains = Array.new
     ########################
     # chains = awesomeMethod params[:from], params[:to]
     # => [@node, @node, @node]
-    chains = []
-    [1, 2, 3, 4, 5].each do |i|
-      chains.push WikipediaNode.create word: 'hoge'
-    end
+    chains = [1, 2, 3, 4, 5]
     ########################
 
     # chains.push(from_id)
@@ -31,7 +28,7 @@ class Api::V1::ResultsController < ApplicationController
     result = Result.new
     if result.save
       chains.each do |node|
-        result_item = ResultItem.new result_id: result.id, node_id: node.id
+        result_item = ResultItem.new result_id: result.id, node_id: node
         result_item.save
       end
       render json: result
