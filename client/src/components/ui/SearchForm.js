@@ -11,7 +11,7 @@ var SentenceForm = React.createClass({
     console.log('From', this.refs.from.value)
     console.log('To', this.refs.to.value)
 
-    fetch('/api/v1/search', {
+    fetch('http://jphacks.進捗.jp:8080/api/v1/search', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
