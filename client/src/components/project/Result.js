@@ -8,7 +8,7 @@ var Result = React.createClass({
   },
   componentWillMount: function() {
     var self = this;
-    fetch('http://localhost:3000/api/v1/results/' + this.props.params.resultId, {
+    fetch('http://jphacks.進捗.jp/api/v1/results/' + this.props.params.resultId, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
