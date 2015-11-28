@@ -10,8 +10,8 @@ module Api
         render :json => "['success','show(GET api/v1/results/:results_id)','method!']"
       end
 
-    end
-    
+   end
+
   end
 end
 
