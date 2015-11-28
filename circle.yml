@@ -10,10 +10,11 @@ dependencies:
     - cd client && npm install -g gulp
 
     - cd server && gem install bundler
+    - cd server && bundle -j4 --path=vendor/bundle
     - cd server && bundle install
 
 test:
   override:
     - cd client && npm run build
 
-    - cd server && rake test
+    - cd server && bundle exec rake test
