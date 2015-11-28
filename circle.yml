@@ -4,6 +4,13 @@ machine:
   ruby:
     version: 2.2.0
 
+services:
+  - mysql
+
+before_script:
+  - mysql -e 'create database server_test;'
+  - mv config/database.ci.yml config/database.yml
+
 dependencies:
   override:
     - cd client && npm install
