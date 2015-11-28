@@ -7,18 +7,29 @@ class Api::V1::ResultsController < ApplicationController
   end
 
   def create
-    param = searchParams
+    params.require(:result).permit(:from, :to)
+
+    from_id = WikipediaNode.find_by(word: from).id
+    to_id = WikipediaNode.find_by(word: to).id
+
+    if path = bfs(client, open_list=[from_id], check_list=[], to_id, edges=[])
+      chains = [to_id]
+      while to_id
+        to_id = path[to_id]
+        chains.push(to_id)
+      end
+    end
 
     # ids = client.query("select id, word from wikipedia_nodes where word = '#{params[:from]}' or word = '#{params[:to]}'").to_a.map{|record| record['id']}
 
     # from_id = ids[0]
     # to_id = ids[1]
 
-    chains = Array.new
+    # chains = Array.new
     ########################
     # chains = awesomeMethod params[:from], params[:to]
     # => [@node, @node, @node]
-    chains = [1, 2, 3, 4, 5]
+    # chains = [1, 2, 3, 4, 5]
     ########################
 
     # chains.push(from_id)
@@ -41,25 +52,6 @@ class Api::V1::ResultsController < ApplicationController
     p params
     ri = ResultItem.where(result_id: params['id'])
     render :json => ri
-  end
-
-  private
-  def searchParams
-    params.require(:result).permit(:from, :to)
-    from_keyword = '栃木県'
-    to_keyword = '地方公共団体'
-
-    from_id = WikipediaNode.find_by(word: from_keyword).id
-    to_id = WikipediaNode.find_by(word: to_keyword).id
-
-    if path = bfs(client, open_list=[from_id], check_list=[], to_id, edges=[])
-      result = [to_id]
-      while to_id
-        to_id = path[to_id]
-        result.push(to_id)
-      end
-      puts result.join("->")[0..-3]
-    end
   end
 
   private
