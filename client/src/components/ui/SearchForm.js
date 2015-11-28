@@ -22,10 +22,22 @@ var SentenceForm = React.createClass({
     return (
       <form onsubmit="return false;">
         <fieldset className="form-group">
-          <label>Text:</label>
-          <input type="text" className="form-control" ref="text" placeholder="Enter Text" />
+          <div className='form-inline'>
+            <fieldset className="col-sm-6">
+              <label>From:</label>
+              <input type="text" className="form-control" ref="from" placeholder="Enter from" />
+            </fieldset>
+
+            <fieldset className="col-sm-6">
+              <label>To:</label>
+              <input type="text" className="form-control" ref="from" placeholder="Enter to" />
+            </fieldset>
+          </div>
         </fieldset>
-        <div className="btn btn-primary" onClick={this.onClick}>Submit</div>
+
+        <fieldset className="form-group">
+          <div className="btn btn-primary btn-block" onClick={this.onClick}>Submit</div>
+        </fieldset>
       </form>
     )
   }
