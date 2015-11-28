@@ -14,6 +14,9 @@ var Navbar = React.createClass({
             <li className="nav-item">
               <Link className="nav-link" to="/search" activeClassName="active">Search</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/browse" activeClassName="active">Browse</Link>
+            </li>
           </ul>
         </div>
       </nav>

@@ -13,6 +13,7 @@ var Layout = require('./components/page/Layout.js')
 
 // Project components
 var Search = require('./components/project/Search.js')
+var Browse = require('./components/project/Browse.js')
 
 function onUpdateHandler() {
   window.scrollTo(0, 0)
@@ -24,6 +25,7 @@ ReactDOM.render((
   <Router>
     <Route path="" component={Layout}>
       <Route path="/search" component={Search} />
+      <Route path="/browse" component={Browse} />
     </Route>
     <Redirect from="/" to="/search" />
   </Router>
