@@ -6,41 +6,87 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+con = ActiveRecord::Base.connection
 
-elems_edge = {}
-
-elems_all = []
 records = []
-
-File.foreach("tmp/links_scraped.tsv") do |line|
-  elems = line.chomp.split(/\t/).uniq
-  elems_edge[elems[0]] = elems[1..-1]
-  if elems.size > 1
-    elems_all += elems
-    elems_all.uniq!
+File.open("tmp/link.tsv").read.split(/\n/).each_with_index do |line, index|
+  puts index
+  elems = line.scrub("").gsub(/\'/, "").chomp.split(/\t/).uniq
+  records += elems
+  if records.size >= 3000
+    begin
+      con.execute "INSERT INTO tmp_nodes(word) VALUES('#{records.join("'), ('")}')".scrub("")
+    rescue
+    end
+    records = []
+  end
+end
+if records.size >= 1
+  begin
+    con.execute "INSERT INTO tmp_nodes(word) VALUES('#{records.join("'), ('")}')".scrub("")
+  rescue
   end
 end
 
-elems_all.each do |word|
-  records <<  WikipediaNode.new({"word": word})
-end
-
-WikipediaNode.import records
-
-wiki_node_dict = {}
-
-WikipediaNode.all.each do |record|
-  wiki_node_dict[record.word] = record.id
-end
-
 records = []
+File.open("tmp/relative_link.tsv").read.split(/\n/).each_with_index do |line, index|
+  puts index
+  elems = line.scrub("").chomp.split(/\t/).uniq
+  records += elems
+  if records.size >= 3000
+    begin
+      con.execute "INSERT INTO tmp_nodes(word) VALUES('#{records.join("'), ('")}')".scrub("")
+    rescue
+    end
+    records = []
+  end
+end
+if records.size >= 1
+  begin
+    con.execute "INSERT INTO tmp_nodes(word) VALUES('#{records.join("'), ('")}')".scrub("")
+  rescue
+  end
+end
 
-elems_edge.each do |from, to|
-  if from && to
-    to.map{|to_word| wiki_node_dict[to_word]}.each do |to_id|
-      records << WikipediaEdge.new({"from_id": wiki_node_dict[from], "to_id": to_id})
+res = con.execute "select distinct word from tmp_nodes;"
+res.each_with_index do |item, index|
+  WikipediaNode.create({"word": item[0]})
+  puts index
+end
+
+dict = {}
+WikipediaNode.all.each do |node|
+  dict[node.word] = node.id
+end
+
+File.open("tmp/link.tsv").read.split(/\n/).each do |line|
+  elems = line.split(/\t/)
+  begin
+    from_id = dict[elems[0]]
+  rescue
+    next
+  end
+  elems[1..-1].each do |to|
+    begin
+      to_id = dict[to]
+      WikipediaEdge.create({"from_id": from_id, "to_id": to_id})
     end
   end
 end
 
-WikipediaEdge.import records
+File.open("tmp/relative_link.tsv").read.split(/\n/).each_with_index do |line, index|
+  puts index
+  elems = line.split(/\t/)
+  begin
+    from_id = dict[elems[0]]
+  rescue
+    next
+  end
+  elems[1..-1].each do |to|
+    begin
+      to_id = dict[to]
+      WikipediaEdge.create({"from_id": from_id, "to_id": to_id})
+    end
+  end
+end
+
