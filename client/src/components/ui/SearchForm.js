@@ -32,23 +32,24 @@ var SentenceForm = React.createClass({
   },
   render: function() {
     return (
-      <form onsubmit="return false;">
+      <form className="search-form" onsubmit="return false;">
+        <p>気になる単語を入力してください</p>
         <fieldset className="form-group">
           <div className="row">
             <div className="col-sm-6">
-              <label>From:</label>
-              <input type="text" className="form-control" ref="from" placeholder="Enter from word" />
+              <label>はじめ:</label>
+              <input type="text" className="form-control" ref="from" placeholder="はじめの単語" />
             </div>
 
             <div className="col-sm-6">
-              <label>To:</label>
-              <input type="text" className="form-control" ref="to" placeholder="Enter to word" />
+              <label>おわり:</label>
+              <input type="text" className="form-control" ref="to" placeholder="おわりの単語" />
             </div>
           </div>
         </fieldset>
 
-        <fieldset className="form-group">
-          <div className="btn btn-primary btn-block" onClick={this.onClick}>Submit</div>
+        <fieldset className="form-group text-xs-center">
+          <div className="btn btn-primary" onClick={this.onClick}>探索開始!</div>
         </fieldset>
       </form>
     )

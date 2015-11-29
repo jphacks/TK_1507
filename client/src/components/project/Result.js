@@ -29,23 +29,33 @@ var Result = React.createClass({
   render: function() {
     return (
       <div className='container'>
-        <h1>Result</h1>
+        <h1>Result#{this.props.params.resultId}</h1>
         <hr />
-        <p>#{this.props.params.resultId}</p>
-        <FavoriteButton id={this.props.params.resultId} />
+        <div className='col-xs-12 clearfix'>
+          <div className="row">
+            <div className="pull-left">length: {this.state.result.length}</div>
+            <FavoriteButton classn="pull-right" id={this.props.params.resultId} />
+          </div>
+        </div>
 
-        {
-          this.state.result.map(function(item, index) {
-            return (
-              <div className='col-xs-12 card' key={index}>
-                <div className='card-clock' key={index}>
-                  <p key={index}>{item.node_id}</p>
-                  <p key={index+999}>{item.created_at}</p>
-                </div>
-              </div>
-            )
-          })
-        }
+        <div className="row">
+          <div className='col-xs-12'>
+            {
+              this.state.result.map(function(item, index) {
+                return (
+
+                  <div className='card' key={index+111}>
+                    <div className='card-block clearfix' key={index}>
+                      <div className='pull-left' key={index}>{item.node_id}</div>
+                      <div className='pull-right' key={index+999}>{item.created_at}</div>
+                    </div>
+                  </div>
+
+                )
+              })
+            }
+          </div>
+        </div>
       </div>
     )
   }

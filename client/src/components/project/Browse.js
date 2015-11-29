@@ -24,7 +24,6 @@ var Browse = React.createClass({
       return response.json();
     }).then(function(response) {
       if (response !== null) {
-        console.log(response)
         self.setState({result: response})
       }
     })
@@ -35,22 +34,24 @@ var Browse = React.createClass({
         <h1>Browse</h1>
         <hr />
         <div className='row'>
-          <div className='container'>
-            {
-              this.state.result.map(function(item, index) {
-                return (
-                  <div className="col-sm-12 card" key={index} >
+          {
+            this.state.result.map(function(item, index) {
+              return (
+                <div className="col-sm-4" key={index} >
+                  <div className="card">
                     <div className="card-block">
                       <p>{item.id}</p>
                       <p>{item.created_at}</p>
-                      <Link className="btn btn-primary-outline btn-sm" to={"/result/" + item.id}>Detail</Link>
-                      <FavoriteButton id={item.id} />
+                      <div className="clearfix">
+                        <Link className="btn btn-primary-outline btn-sm pull-left" to={"/result/" + item.id}>Detail</Link>
+                        <FavoriteButton classn="pull-right" id={item.id} />
+                      </div>
                     </div>
                   </div>
-                )
-              })
-            }
-          </div>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     )

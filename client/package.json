@@ -30,6 +30,7 @@
   "dependencies": {
     "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
     "es6-promise": "^3.0.2",
+    "d3": "^3.5.9",
     "font-awesome": "^4.4.0",
     "history": "^1.13.1",
     "react": "^0.14.2",
