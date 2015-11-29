@@ -13,10 +13,12 @@ class Api::V1::ResultsController < ApplicationController
     to_id = WikipediaNode.find_by(word: to).id
 
     if path = bfs(client, open_list=[from_id], check_list=[], to_id, edges=[])
-      chains = [to_id]
+      chains = [[to_id, WikipediaNode.find(to_id).id]]
+
       while to_id
         to_id = path[to_id]
-        chains.push(to_id)
+        word_title = WikipediaNode.find(to_id).id
+        chains.push([to_id, word_title])
       end
     end
 
@@ -49,7 +51,6 @@ class Api::V1::ResultsController < ApplicationController
   end
 
   def show
-    p params
     ri = ResultItem.where(result_id: params['id'])
     render :json => ri
   end
@@ -78,5 +79,4 @@ class Api::V1::ResultsController < ApplicationController
       return bfs(client, open_list, check_list, to_id, edges)
     end
   end
-
 end
