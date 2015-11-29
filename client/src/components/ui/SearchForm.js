@@ -3,32 +3,34 @@ var whatwgFetch = require('whatwg-fetch')
 var reactRouter = require('react-router')
 var History = reactRouter.History
 
-var SentenceForm = React.createClass({
+var SearchForm = React.createClass({
   mixins: [ History ],
   onClick: function(e) {
     var self = this;
 
-    console.log('From', this.refs.from.value)
-    console.log('To', this.refs.to.value)
+    // console.log('From', self.refs.from.value.length)
+    // console.log('To', self.refs.to.value.length)
 
-    // fetch('http://jphacks.進捗.jp:8080/api/v1/search', {
-    fetch('http://jphacks.進捗.jp/api/v1/results', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        result: {
-          from: this.refs.from.value,
-          to: this.refs.to.value
-        }
+    if (self.refs.from.value.length === 0 || self.refs.to.value.length === 0) {
+    } else {
+      fetch('http://jphacks.進捗.jp/api/v1/results', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          result: {
+            from: self.refs.from.value,
+            to: self.refs.to.value
+          }
+        })
+      }).then(function(response) {
+        return response.json()
+      }).then(function(response) {
+        self.history.pushState(undefined, "/result/" + response.id, undefined);
       })
-    }).then(function(response) {
-      return response.json()
-    }).then(function(response) {
-      self.history.pushState(undefined, "/result/" + response.id, undefined);
-    })
+    }
   },
   render: function() {
     return (
@@ -38,12 +40,12 @@ var SentenceForm = React.createClass({
           <div className="row">
             <div className="col-sm-6">
               <label>はじめ:</label>
-              <input type="text" className="form-control" ref="from" placeholder="はじめの単語" />
+              <input type="text" className="form-control" minLength="0" ref="from" placeholder="はじめの単語" />
             </div>
 
             <div className="col-sm-6">
               <label>おわり:</label>
-              <input type="text" className="form-control" ref="to" placeholder="おわりの単語" />
+              <input type="text" className="form-control" minLength="0" ref="to" placeholder="おわりの単語" />
             </div>
           </div>
         </fieldset>
@@ -56,4 +58,4 @@ var SentenceForm = React.createClass({
   }
 })
 
-module.exports = SentenceForm
+module.exports = SearchForm
