@@ -8,7 +8,7 @@ var Navbar = React.createClass({
       <nav className="navbar navbar-light bg-faded">
         <div className="container">
           <Link className="navbar-brand" to="/search" >
-            TK_07-client
+            Knowlect
           </Link>
           <ul className="nav navbar-nav">
             <li className="nav-item">
