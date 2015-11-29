@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20151128193443) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tmp_nodes", force: :cascade do |t|
+    t.text "word", limit: 65535
+  end
+
   create_table "wikipedia_edges", force: :cascade do |t|
     t.integer  "from_id",    limit: 4
     t.integer  "to_id",      limit: 4
