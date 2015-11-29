@@ -16,12 +16,14 @@ class Api::V1::ResultsController < ApplicationController
     to_id = WikipediaNode.find_by(word: to).id
 
     if path = bfs(open_list=[from_id], check_list=[], to_id, edges=[])
-      chains = [[to_id, WikipediaNode.find(to_id).id]]
+      word_title = WikipediaNode.find_by(id: to_id)
+      chains = [[to_id, word_title.word]]
 
       while to_id
         to_id = path[to_id]
-        word_title = WikipediaNode.find(to_id).id
-        chains.push([to_id, word_title])
+        break unless to_id
+        word_title = WikipediaNode.find_by(id: to_id)
+        chains.push([to_id, word_title.word])
       end
     end
 
@@ -44,6 +46,7 @@ class Api::V1::ResultsController < ApplicationController
 
   private
   def bfs(open_list, check_list=[], to_id, edges)
+    p open_list
 
     from_id = open_list.shift
     # puts "searching...#{from_id}"
