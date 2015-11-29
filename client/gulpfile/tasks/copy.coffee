@@ -18,5 +18,9 @@ gulp.task 'copy:image', ->
   gulp.src '../src/images/*'
     .pipe gulp.dest '../dst/assets/images'
 
+gulp.task 'copy:libjs', ->
+  gulp.src '../node_modules/d3/d3.min.js'
+    .pipe gulp.dest '../dst/assets'
+
 gulp.task 'copy', ->
-  runSequence ['copy:libcss', 'copy:libfont', 'copy:image']
+  runSequence ['copy:libcss', 'copy:libfont', 'copy:libjs', 'copy:image']

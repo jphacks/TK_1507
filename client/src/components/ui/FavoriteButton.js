@@ -3,7 +3,8 @@ var whatwgFetch = require('whatwg-fetch')
 
 var FavoriteButton = React.createClass({
   propTypes: {
-    id: React.PropTypes.number.isRequired,
+    classn: React.PropTypes.string,
+    id: React.PropTypes.number.isRequired
   },
   getInitialState: function() {
     return {
@@ -47,7 +48,7 @@ var FavoriteButton = React.createClass({
   },
   render: function() {
     return (
-      <button className="btn btn-primary-outline btn-sm" onClick={this.onClick} disabled={this.state.disabled}>
+      <button className={"btn btn-primary-outline btn-sm " + this.props.classn} onClick={this.onClick} disabled={this.state.disabled}>
         <i className="fa fa-star fa-fw" />
         {this.state.count}
       </button>
