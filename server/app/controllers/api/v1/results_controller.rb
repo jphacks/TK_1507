@@ -15,7 +15,7 @@ class Api::V1::ResultsController < ApplicationController
     from_id = WikipediaNode.find_by(word: from).id
     to_id = WikipediaNode.find_by(word: to).id
 
-    if path = bfs(client, open_list=[from_id], check_list=[], to_id, edges=[])
+    if path = bfs(open_list=[from_id], check_list=[], to_id, edges=[])
       chains = [[to_id, WikipediaNode.find(to_id).id]]
 
       while to_id
