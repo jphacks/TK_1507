@@ -16,14 +16,12 @@ class Api::V1::ResultsController < ApplicationController
     to_id = WikipediaNode.find_by(word: to).id
 
     if path = bfs(open_list=[from_id], check_list=[], to_id, edges=[])
-      word_title = WikipediaNode.find_by(id: to_id)
-      chains = [[to_id, word_title.word]]
+      chains = [to_id]
 
       while to_id
         to_id = path[to_id]
         break unless to_id
-        word_title = WikipediaNode.find_by(id: to_id)
-        chains.push([to_id, word_title.word])
+        chains.push(to_id)
       end
     end
 
