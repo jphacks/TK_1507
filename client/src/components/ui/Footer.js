@@ -5,7 +5,7 @@ var Footer = React.createClass({
     return (
       <footer className='container'>
         <hr />
-        <p>
+        <p className='text-xs-center'>
           <span>&copy; TK_07-client All Rights Reserved.</span>
         </p>
       </footer>
